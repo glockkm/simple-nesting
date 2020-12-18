@@ -1,4 +1,8 @@
 
+# expected to get these tests to pass by adding or changing information in the hash programmatically. In other words, if you're asked to, for example, change the value of a certain hash key, don't just re-write the hash with the new value
+# add data to a hash- my_hash[:third] = "i'm third!"
+
+
 def hopper
 	programmer_hash = 
  		{
@@ -15,6 +19,7 @@ def hopper
           :languages => ["C"]
         }
      }
+     programmer_hash[:grace_hopper] # return grace_hopper keys # use bracket method
 
 
 end
@@ -37,6 +42,7 @@ def alan_kay_is_known_for
           :languages => ["C"]
         }
      }
+     programmer_hash[:alan_kay][:known_for] # return value of known_for (key)
 end
 
 def dennis_ritchies_language
@@ -55,6 +61,7 @@ def dennis_ritchies_language
           :languages => ["C"]
         }
      }
+     programmer_hash[:dennis_ritchie][:languages].join # .join returns value for languages as a string
 end
 
 def adding_matz
@@ -63,7 +70,6 @@ def adding_matz
 #   :known_for => "Ruby",
 #    :languages => ["LISP", "C"]
 # }
-
 	programmer_hash = 
  		{
         :grace_hopper => {
@@ -79,9 +85,12 @@ def adding_matz
           :languages => ["C"]
         }
      }
-
-    
-end
+    # 
+    programmer_hash.merge(:yukihiro_matsumoto => { # .merge { :a => 'a' }.merge(:b => 'b')....does not alter orig hash but returns a new one. use .merge! to change in place
+    :known_for => "Ruby",
+    :languages => ["LISP, C"]
+    })
+  end
 
 def changing_alan
 	programmer_hash = 
@@ -100,10 +109,12 @@ def changing_alan
         }
      }
      #change what Alan Kay is :known_for to the value of the alans_new_info variable. 
-     alans_new_info = "GUI"
-     
-     
+     programmer_hash[:alan_kay][:known_for] = "GUI"
+     programmer_hash # returns newly changed hash
 end
+
+
+
 
 def adding_to_dennis
 	programmer_hash = 
@@ -121,5 +132,6 @@ def adding_to_dennis
           :languages => ["C"]
         }
      }
-
+     programmer_hash[:dennis_ritchie][:languages] << "Assembly" # add an additional item by using the shovel method
+     programmer_hash
 end
